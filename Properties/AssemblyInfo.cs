@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("libwarty.bean-impl")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("libdargon.management-impl")]
+[assembly: AssemblyDescription("Dargon Managed Objects Implementation")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("libwarty.bean-impl")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("The Dargon Project")]
+[assembly: AssemblyProduct("libdargon.management-impl")]
+[assembly: AssemblyCopyright("Copyright © Michael 'ItzWarty' Yu 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
