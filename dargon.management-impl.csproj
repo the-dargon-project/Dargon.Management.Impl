@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D14A148B-D3BD-4C18-8E09-F474F99C966C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dargon.Management</RootNamespace>
+    <AssemblyName>libdargon.management-impl</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="libdargon.management-api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\libdargon.management-api.0.0.0\lib\net45\libdargon.management-api.dll</HintPath>
+    </Reference>
+    <Reference Include="libdpo">
+      <HintPath>packages\libdpo.0.0.13\lib\net45\libdpo.dll</HintPath>
+    </Reference>
+    <Reference Include="libwarty">
+      <HintPath>packages\libdpo.0.0.13\lib\net45\libwarty.dll</HintPath>
+    </Reference>
+    <Reference Include="libwarty.proxies-api">
+      <HintPath>packages\libdpo.0.0.13\lib\net45\libwarty.proxies-api.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PortableObjects\C2SRequestMobInvocation.cs" />
+    <Compile Include="PortableObjects\C2SRequestMobOperations.cs" />
+    <Compile Include="Client\ManagementClient.cs" />
+    <Compile Include="PortableObjects\MobOperation.cs" />
+    <Compile Include="PortableObjects\MobOperationParameter.cs" />
+    <Compile Include="PortableObjects\S2CContextBatch.cs" />
+    <Compile Include="PortableObjects\S2CMobOperations.cs" />
+    <Compile Include="Server\ILocalManagementServerContext.cs" />
+    <Compile Include="Server\IManagementServerConfiguration.cs" />
+    <Compile Include="Server\IManagementSessionFactory.cs" />
+    <Compile Include="Server\IMessageFactory.cs" />
+    <Compile Include="Server\LocalManagementRegistry.cs" />
+    <Compile Include="Server\LocalManagementServer.cs" />
+    <Compile Include="Server\LocalManagementServerContext.cs" />
+    <Compile Include="Server\ManagementContext.cs" />
+    <Compile Include="Server\ManagementContextFactory.cs" />
+    <Compile Include="Server\ManagementServerConfiguration.cs" />
+    <Compile Include="Server\ManagementSession.cs" />
+    <Compile Include="Server\ManagementSessionFactory.cs" />
+    <Compile Include="Server\MessageFactory.cs" />
+    <Compile Include="PortableObjects\S2CMobInvocationResult.cs" />
+    <Compile Include="Utilities\SessionBase.cs" />
+    <Compile Include="ManagementPofContext.cs" />
+    <Compile Include="PortableObjects\ContextInfo.cs" />
+    <Compile Include="PortableObjects\S2CContextRegistered.cs" />
+    <Compile Include="PortableObjects\S2CContextUnregistered.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
