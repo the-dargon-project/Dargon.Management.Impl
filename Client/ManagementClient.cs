@@ -27,7 +27,6 @@ namespace Dargon.Management.Client {
       }
 
       public void HandleContextBatch(S2CContextBatch x) {
-         Console.WriteLine("Handle context batch: " + x);
          var capture = RemoteManageableObjectAdded;
          if (capture != null) {
             foreach (var context in x.Added) {
@@ -44,7 +43,6 @@ namespace Dargon.Management.Client {
       }
 
       public void HandleContextRegistered(S2CContextRegistered x) {
-         Console.WriteLine("Handle context registered: " + x.Info.Name);
          var capture = RemoteManageableObjectAdded;
          if (capture != null) {
             capture(this, x.Info);
@@ -52,7 +50,6 @@ namespace Dargon.Management.Client {
       }
 
       public void HandleContextUnregistered(S2CContextUnregistered x) {
-         Console.WriteLine("Handle context unregistered: " + x.Info.Name);
          var capture = RemoteManageableObjectRemoved;
          if (capture != null) {
             capture(this, x.Info);
@@ -64,7 +61,6 @@ namespace Dargon.Management.Client {
       }
 
       private void HandleMobOperations(S2CMobOperations x) {
-         Console.WriteLine("Handle mob operations for: " + x.Guid);
          var capture = RemoteManageableObjectOperationsResult;
          if (capture != null) {
             capture(this, x);
