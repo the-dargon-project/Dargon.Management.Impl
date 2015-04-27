@@ -1,63 +1,32 @@
 ﻿using System;
-using System.Net.Sockets;
-using ItzWarty.Networking;
-using ItzWarty.Threading;
-using NLog;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Dargon.Management.Server {
    public class LocalManagementServer : ILocalManagementServer {
-      private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+      private readonly ILocalManagementRegistry localManagementRegistry;
+      private readonly ILocalManagementListener localManagementListener;
 
-      private readonly IThreadingProxy threadingProxy;
-      private readonly INetworkingProxy networkingProxy;
-      private readonly IManagementSessionFactory managementSessionFactory;
-      private readonly ILocalManagementServerContext serverContext;
-      private readonly IManagementServerConfiguration configuration;
-
-      private readonly IThread listenerThread;
-      private readonly ICancellationTokenSource cancellationTokenSource;
-
-      public LocalManagementServer(IThreadingProxy threadingProxy, INetworkingProxy networkingProxy, IManagementSessionFactory managementSessionFactory, ILocalManagementServerContext serverContext, IManagementServerConfiguration configuration) {
-         this.threadingProxy = threadingProxy;
-         this.networkingProxy = networkingProxy;
-         this.managementSessionFactory = managementSessionFactory;
-         this.serverContext = serverContext;
-         this.configuration = configuration;
-
-         this.listenerThread = threadingProxy.CreateThread(ListenerThreadStart, new ThreadCreationOptions { IsBackground = true });
-         this.cancellationTokenSource = threadingProxy.CreateCancellationTokenSource();
+      public LocalManagementServer(ILocalManagementRegistry localManagementRegistry, ILocalManagementListener localManagementListener) {
+         this.localManagementRegistry = localManagementRegistry;
+         this.localManagementListener = localManagementListener;
       }
 
-      public void Initialize() {
-         listenerThread.Start();
+      public IManagementContext RegisterInstance(object obj) {
+         return localManagementRegistry.RegisterInstance(obj);
       }
 
-      private void ListenerThreadStart() {
-         try {
-            ListenerThreadStartInternal();
-         } catch (SocketException e) {
-            logger.Fatal("Fatal unexpected socket exception from listener thread: " + e);
-         } catch (OperationCanceledException e) { 
-            logger.Info("Expected cancellation exception from listener thread: " + e);
-         } catch (Exception e) {
-            logger.Fatal("Fatal unexpected exception from listener thread: " + e);
-         }
+      public void RegisterContext(IManagementContext managementContext) {
+         localManagementRegistry.RegisterContext(managementContext);
       }
 
-      private void ListenerThreadStartInternal() {
-         var listener = networkingProxy.CreateListenerSocket(configuration.ListeningEndpoint);
-         while (!cancellationTokenSource.IsCancellationRequested) {
-            var client = listener.Accept(cancellationTokenSource.Token);
-            var session = managementSessionFactory.CreateSession(client, serverContext);
-            serverContext.HandleManagementSessionCreated(session);
-         }
-      }
-
+      /// <summary>
+      /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+      /// </summary>
       public void Dispose() {
-         cancellationTokenSource.Cancel();
-         cancellationTokenSource.Dispose();
-         listenerThread.Join();
-         serverContext.Dispose();
+         localManagementListener.Dispose();
       }
    }
 }
