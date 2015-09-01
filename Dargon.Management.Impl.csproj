@@ -37,6 +37,9 @@
     <Reference Include="Dargon.PortableObjects">
       <HintPath>packages\Dargon.PortableObjects.0.1.0\lib\net45\Dargon.PortableObjects.dll</HintPath>
     </Reference>
+    <Reference Include="Dargon.Ryu.Api">
+      <HintPath>packages\Dargon.Ryu.Api.0.0.1\lib\portable-net45+netcore45+MonoAndroid1+MonoTouch1\Dargon.Ryu.Api.dll</HintPath>
+    </Reference>
     <Reference Include="ItzWarty.Commons">
       <HintPath>packages\ItzWarty.Commons.0.1.1\lib\portable-net45+netcore45+MonoAndroid1+MonoTouch1\ItzWarty.Commons.dll</HintPath>
     </Reference>
@@ -56,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ManagementFactory.cs" />
+    <Compile Include="ManagementRyuPackage.cs" />
     <Compile Include="PortableObjects\C2SRequestMobInvocation.cs" />
     <Compile Include="PortableObjects\C2SRequestMobOperations.cs" />
     <Compile Include="Client\ManagementClient.cs" />

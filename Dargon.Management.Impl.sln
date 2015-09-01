@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dargon.Management.Impl", "Dargon.Management.Impl.csproj", "{D14A148B-D3BD-4C18-8E09-F474F99C966C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dargon.Management.Impl.Tests", "..\Dargon.Management.Impl.Tests\Dargon.Management.Impl.Tests.csproj", "{79213846-188E-4BC9-9151-EA1B5B9B0DF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D14A148B-D3BD-4C18-8E09-F474F99C966C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D14A148B-D3BD-4C18-8E09-F474F99C966C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D14A148B-D3BD-4C18-8E09-F474F99C966C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79213846-188E-4BC9-9151-EA1B5B9B0DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79213846-188E-4BC9-9151-EA1B5B9B0DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79213846-188E-4BC9-9151-EA1B5B9B0DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79213846-188E-4BC9-9151-EA1B5B9B0DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
