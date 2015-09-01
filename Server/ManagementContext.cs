@@ -31,6 +31,19 @@ namespace Dargon.Management.Server {
                operations.Add(operation);
             }
          }
+         foreach (var property in type.GetProperties(BindingFlags.Instance | BindingFlags.Public)) {
+            var managedAttribute = property.GetCustomAttribute<ManagedPropertyAttribute>();
+            if (managedAttribute != null) {
+               var accessors = property.GetAccessors();
+               foreach (var accessor in accessors) {
+                  var methodParameters = accessor.GetParameters();
+                  var parameters = Util.Generate(methodParameters.Length, i => CreateMobParameter(methodParameters[i]));
+                  var returnTypeId = pofContext.GetTypeIdByType(accessor.ReturnType);
+                  var operation = new MobOperation(accessor.Name, parameters, returnTypeId);
+                  operations.Add(operation);
+               }
+            }
+         }
       }
 
       private MobOperationParameter CreateMobParameter(ParameterInfo methodParameter) {
